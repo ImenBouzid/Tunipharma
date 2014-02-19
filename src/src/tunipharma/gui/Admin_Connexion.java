@@ -115,9 +115,7 @@ public class Admin_Connexion extends javax.swing.JFrame {
     }//GEN-LAST:event_TextLoginActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         String login = TextLogin.getText();
-         String password = TextPwd.getText();
-      
+         
          String requete = "select * from admin where login='"+TextLogin.getText()+"' and pwd='"+TextPwd.getText()+"'";
         
              try (PreparedStatement ps = ConnectionBD.getInstance().prepareStatement(requete)) {
