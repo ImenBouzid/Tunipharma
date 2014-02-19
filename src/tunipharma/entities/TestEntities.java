@@ -4,19 +4,12 @@
  * and open the template in the editor.
  */
 
-package tunipharma;
+package tunipharma.entities;
 
 /**
  *
  * @author sicateur
  */
-public class Tunipharma {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
-    }
+public class TestEntities {
     
 }
