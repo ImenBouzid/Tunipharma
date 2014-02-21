@@ -36,7 +36,7 @@ public class PharmacienDAO {
 
         List<Pharmacien> listepharmacien = new ArrayList<Pharmacien>();
 
-       String requete = "select nom from pharamacie ";
+       String requete = "select (id_pharamcien,nom,prenom,tel,email) from pharamacien ";
         try {
            Statement statement;
             statement = ConnectionBD.getInstance().createStatement();
@@ -58,4 +58,5 @@ public class PharmacienDAO {
             return null;
         }
     
+}
 }
