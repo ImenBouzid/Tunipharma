@@ -152,7 +152,7 @@ tableCust.setModel(dtm); // Association du model à notre tableau nommé tableCu
 }catch(Exception e){
 System.err.println("Erreur "+ e.getMessage());
 }
-}
+
     }//GEN-LAST:event_formWindowOpened
 /**
      * @param args the command line arguments
