@@ -11,10 +11,9 @@ package tunipharma.entities;
 public class Pharmacie {
     
     private int id_pharmacie;
-    private int id_pharmacien;
+   
    
     private String nom;
-    private String adresse;
     private float tel;
     private float fax;
     private String type;
@@ -23,12 +22,16 @@ public class Pharmacie {
     private String photo;
     private String horaire_ouverture;
     private String horaire_fermeture;
+    private String date_ajout;
+    private int id_adresse;
+    private int statut;
+    private int id_visite;
 
-    public Pharmacie(int id_pharmacie, int id_pharmacien, String nom, String adresse, float tel, float fax, String type, int id_service, String note, String photo, String horaire_ouverture, String horaire_fermeture) {
+    public Pharmacie(){}
+
+    public Pharmacie(int id_pharmacie, String nom, float tel, float fax, String type, int id_service, String note, String photo, String horaire_ouverture, String horaire_fermeture, String date_ajout, int id_adresse, int statut, int id_visite) {
         this.id_pharmacie = id_pharmacie;
-        this.id_pharmacien = id_pharmacien;
         this.nom = nom;
-        this.adresse = adresse;
         this.tel = tel;
         this.fax = fax;
         this.type = type;
@@ -37,7 +40,43 @@ public class Pharmacie {
         this.photo = photo;
         this.horaire_ouverture = horaire_ouverture;
         this.horaire_fermeture = horaire_fermeture;
+        this.date_ajout = date_ajout;
+        this.id_adresse = id_adresse;
+        this.statut = statut;
+        this.id_visite = id_visite;
     }
+    
+
+    
+    
+    
+    
+    
+    public String getDate_ajout() {
+        return date_ajout;
+    }
+
+    public void setDate_ajout(String date_ajout) {
+        this.date_ajout = date_ajout;
+    }
+
+    public int getId_adresse() {
+        return id_adresse;
+    }
+
+    public void setId_adresse(int id_adresse) {
+        this.id_adresse = id_adresse;
+    }
+
+    public int getStatut() {
+        return statut;
+    }
+
+    public void setStatut(int statut) {
+        this.statut = statut;
+    }
+
+    
 
     public int getId_pharmacie() {
         return id_pharmacie;
@@ -47,13 +86,7 @@ public class Pharmacie {
         this.id_pharmacie = id_pharmacie;
     }
 
-    public int getId_pharmacien() {
-        return id_pharmacien;
-    }
-
-    public void setId_pharmacien(int id_pharmacien) {
-        this.id_pharmacien = id_pharmacien;
-    }
+    
 
     public String getNom() {
         return nom;
@@ -63,13 +96,7 @@ public class Pharmacie {
         this.nom = nom;
     }
 
-    public String getAdresse() {
-        return adresse;
-    }
-
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
-    }
+    
 
     public float getTel() {
         return tel;
@@ -133,6 +160,14 @@ public class Pharmacie {
 
     public void setHoraire_fermeture(String horaire_fermeture) {
         this.horaire_fermeture = horaire_fermeture;
+    }
+
+    public int getId_visite() {
+        return id_visite;
+    }
+
+    public void setId_visite(int id_visite) {
+        this.id_visite = id_visite;
     }
     
     

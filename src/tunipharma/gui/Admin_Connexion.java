@@ -20,6 +20,10 @@ import tunipharma.util.ConnectionBD;
  */
 public class Admin_Connexion extends javax.swing.JFrame {
 
+    public static Object getInstance() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     /**
      * Creates new form Admin_Connexion
      */

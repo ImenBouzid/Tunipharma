@@ -14,24 +14,31 @@ public class Pharmacien {
     private String prenom;
     private float tel;
     private float cin;
-    private String adresse;
+    
     private String email;
      private String login;
       private String pwd;
      private String photo;
+   private int statut;  
+   private int id_pharmacie;
 
-    public Pharmacien(int id_pharmacien, String nom, String prenom, float tel, float cin, String adresse, String email, String login, String pwd, String photo) {
+   
+   public Pharmacien(){}
+    public Pharmacien(int id_pharmacien, String nom, String prenom, float tel, float cin, String email, String login, String pwd, String photo, int statut, int id_pharmacie) {
         this.id_pharmacien = id_pharmacien;
         this.nom = nom;
         this.prenom = prenom;
         this.tel = tel;
         this.cin = cin;
-        this.adresse = adresse;
         this.email = email;
         this.login = login;
         this.pwd = pwd;
         this.photo = photo;
+        this.statut = statut;
+        this.id_pharmacie = id_pharmacie;
     }
+   
+    
 
     public int getId_pharmacien() {
         return id_pharmacien;
@@ -73,13 +80,7 @@ public class Pharmacien {
         this.cin = cin;
     }
 
-    public String getAdresse() {
-        return adresse;
-    }
-
-    public void setAdresse(String adresse) {
-        this.adresse = adresse;
-    }
+    
 
     public String getEmail() {
         return email;
@@ -111,6 +112,22 @@ public class Pharmacien {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public int getStatut() {
+        return statut;
+    }
+
+    public void setStatut(int statut) {
+        this.statut = statut;
+    }
+
+    public int getId_pharmacie() {
+        return id_pharmacie;
+    }
+
+    public void setId_pharmacie(int id_pharmacie) {
+        this.id_pharmacie = id_pharmacie;
     }
     
     
