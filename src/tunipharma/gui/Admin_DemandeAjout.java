@@ -4,11 +4,18 @@
  */
 package tunipharma.gui;
 
-/**
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import tunipharma.DAO.PharmacienDAO;
+import tunipharma.entities.Pharmacien;
+
+
+    /**
  *
  * @author Azza
  */
 public class Admin_DemandeAjout extends javax.swing.JFrame {
+    private Object tableCust;
 
     /**
      * Creates new form Admin_DemandeAjout
@@ -34,6 +41,11 @@ public class Admin_DemandeAjout extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -112,7 +124,37 @@ public class Admin_DemandeAjout extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        PharmacienDAO phDao = new PharmacienDAO();
+List<Pharmacien> listeph;
+        listeph =  new PharmacienDAO.DisplayPartiePharmacien();
+DefaultTableModel dtm = new DefaultTableModel(); //Definition du model utilisé par notre tableau
+dtm.addColumn("Id "); //Elaboration de la partie Header
+dtm.addColumn("NOM"); //
+dtm.addColumn("PRENOM");//
+dtm.addColumn("TEL");//
+dtm.addColumn("EMAIL");//
+
+try{ //Elaboration de la partie DATA
+dtm.setRowCount(0);
+for (Pharmacien p : listeph){
+int id = p.getId_pharmacien();
+String nom = p.getNom();
+String prenom = p.getPrenom();
+float tel = p.getTel();
+String email = p.getEmail();
+
+Object[] obj = {id,nom,prenom,tel,email};
+dtm.addRow(obj); //Affectation de l'objet obj de type Tableau d'Object à notre model
+}
+tableCust.setModel(dtm); // Association du model à notre tableau nommé tableCust
+}catch(Exception e){
+System.err.println("Erreur "+ e.getMessage());
+}
+}
+    }//GEN-LAST:event_formWindowOpened
+/**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
