@@ -4,6 +4,7 @@
  */
 package tunipharma.DAO;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -59,4 +60,37 @@ public class PharmacienDAO {
         }
     
 }
+    
+    
+    public void updatePartiePharmacien(Pharmacien st){
+        String requete = "update pharmacien set statut=1 where id_pharmacien=?";
+        try {
+            PreparedStatement ps = ConnectionBD.getInstance().prepareStatement(requete);
+           
+            ps.setInt(1, st.getStatut());
+          
+            ps.executeUpdate();
+            System.out.println("Mise à jour effectuée avec succès");
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors de la mise à jour "+ex.getMessage());
+        }
+
+    }
+    
+    
+     public void deletePharmacien(int num){
+
+          String requete = "delete from pharmacien where id_pharmacien=?";
+        try {
+            PreparedStatement ps = ConnectionBD.getInstance().prepareStatement(requete);
+            ps.setInt(1, num);
+            ps.executeUpdate();
+            System.out.println("Suppression effectuée avec succès");
+        } catch (SQLException ex) {
+           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("erreur lors de la suppression "+ex.getMessage());
+        }
+    }
+
 }

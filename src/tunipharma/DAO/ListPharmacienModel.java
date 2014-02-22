@@ -7,12 +7,12 @@ package tunipharma.DAO;
 import java.util.ArrayList;
 import java.util.List;
 import tunipharma.entities.Pharmacien;
-
+import javax.swing.table.AbstractTableModel;
 /**
  *
  * @author Azza
  */
-public class ListPharmacienModel {
+public class ListPharmacienModel extends AbstractTableModel{
     
      String[] headers = {"Id Pharmacien", "Nom du Pharamacien", "Prénom", "Telephone","E-Mail"}; 
     List<Pharmacien> listSt = new ArrayList<Pharmacien>();
@@ -21,15 +21,15 @@ public class ListPharmacienModel {
         PharmacienDAO stdao = new PharmacienDAO();
         listSt = stdao.DisplayPartiePharmacien();
     }
-
+ @Override
     public int getRowCount() {
             return listSt.size();
     }
-
+ @Override
     public int getColumnCount() {
         return headers.length;
     }
-
+ @Override
     public Object getValueAt(int rowIndex, int ColumnIndex) {
         switch (ColumnIndex) {
             case 0:
@@ -47,7 +47,7 @@ public class ListPharmacienModel {
                 return null;
         }
     }
-
+ @Override
         public String getColumnName(int i) {
         return headers[i];
     }
