@@ -37,7 +37,7 @@ public class PharmacienDAO {
 
         List<Pharmacien> listepharmacien = new ArrayList<Pharmacien>();
 
-       String requete = "select (id_pharamcien,nom,prenom,tel,email) from pharamacien ";
+       String requete = "select * from pharamacien where statut=0 ";
         try {
            Statement statement;
             statement = ConnectionBD.getInstance().createStatement();
@@ -47,14 +47,24 @@ public class PharmacienDAO {
                 Pharmacien pharmacien =new Pharmacien();
                 
                 
-                pharmacien.setNom(resultat.getString(1));
-               // pharmacie.setAdresse(resultat.getString(2));
+                pharmacien.setId_pharmacien(resultat.getInt(1));
+                pharmacien.setId_pharmacie(resultat.getInt(2));
+                pharmacien.setNom(resultat.getString(3));
+                pharmacien.setPrenom(resultat.getString(4));
+                pharmacien.setStatut(resultat.getInt(5));
+                pharmacien.setTel(resultat.getInt(6));
+                pharmacien.setEmail(resultat.getString(7));
+                pharmacien.setLogin(resultat.getString(8));
+                pharmacien.setPwd(resultat.getString(9));
+                pharmacien.setPhoto(resultat.getString(10));
+                pharmacien.setNom(resultat.getString(11));
+               
 
                 listepharmacien.add(pharmacien);
             }
             return listepharmacien;
         } catch (SQLException ex) {
-           //Logger.getLogger(PersonneDao.class.getName()).log(Level.SEVERE, null, ex);
+           
             System.out.println("erreur lors du chargement des Pharmacie "+ex.getMessage());
             return null;
         }

@@ -5,8 +5,13 @@
 package tunipharma.gui;
 
 
-import javax.swing.table.TableModel;
+
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 import tunipharma.DAO.ListPharmacienModel;
+import tunipharma.DAO.PharmacienDAO;
+import tunipharma.entities.Pharmacien;
 
 
 
@@ -61,8 +66,13 @@ public class Admin_DemandeAjout extends javax.swing.JFrame {
         jLabel1.setText("Voici les derniéres Demande d'ajout ");
 
         jButton2.setText("Ignorer");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Mettre à jour ");
+        jButton3.setText("Afficher");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -76,19 +86,20 @@ public class Admin_DemandeAjout extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addComponent(jLabel1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(99, 99, 99)
+                                .addComponent(jButton1)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton2)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton3)))
+                        .addGap(0, 141, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -110,6 +121,9 @@ public class Admin_DemandeAjout extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+       Pharmacien st = null;
+        PharmacienDAO stdao = new PharmacienDAO();
+        stdao.updatePartiePharmacien(st);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -119,7 +133,22 @@ public class Admin_DemandeAjout extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        
+        List<Pharmacien> Di=new ArrayList() ;
+        PharmacienDAO stdao = new PharmacienDAO();
+        Di = stdao.DisplayPartiePharmacien();
+        
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        int SelectedRow = jTable1.getSelectedRow();
+        final  DefaultTableModel model =  new  DefaultTableModel ();
+        model.removeRow(SelectedRow);
+       int num = 0 ;
+        PharmacienDAO stdao = new PharmacienDAO();
+        stdao.deletePharmacien(num);
+    }//GEN-LAST:event_jButton2ActionPerformed
 /**
      * @param args the command line arguments
      */

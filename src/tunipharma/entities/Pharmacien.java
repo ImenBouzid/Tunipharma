@@ -10,26 +10,25 @@ package tunipharma.entities;
  */
 public class Pharmacien {
     private int id_pharmacien;
+    private int id_pharmacie;
     private String nom;
     private String prenom;
-    private float tel;
-    private float cin;
-    
+    private int statut;
+    private int tel;
     private String email;
-     private String login;
-      private String pwd;
-     private String photo;
-   private int statut;  
-   private int id_pharmacie;
+    private String login;
+    private String pwd;
+    private String photo;
+     
+    
 
    
    public Pharmacien(){}
-    public Pharmacien(int id_pharmacien, String nom, String prenom, float tel, float cin, String email, String login, String pwd, String photo, int statut, int id_pharmacie) {
+    public Pharmacien(int id_pharmacien, String nom, String prenom, int tel, String email, String login, String pwd, String photo, int statut, int id_pharmacie) {
         this.id_pharmacien = id_pharmacien;
         this.nom = nom;
         this.prenom = prenom;
         this.tel = tel;
-        this.cin = cin;
         this.email = email;
         this.login = login;
         this.pwd = pwd;
@@ -64,21 +63,15 @@ public class Pharmacien {
         this.prenom = prenom;
     }
 
-    public float getTel() {
+    public int getTel() {
         return tel;
     }
 
-    public void setTel(float tel) {
+    public void setTel(int tel) {
         this.tel = tel;
     }
 
-    public float getCin() {
-        return cin;
-    }
-
-    public void setCin(float cin) {
-        this.cin = cin;
-    }
+    
 
     
 

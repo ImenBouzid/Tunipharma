@@ -14,17 +14,17 @@ import javax.swing.table.AbstractTableModel;
  */
 public class ListPharmacienModel extends AbstractTableModel{
     
-     String[] headers = {"Id Pharmacien", "Nom du Pharamacien", "Prénom", "Telephone","E-Mail"}; 
-    List<Pharmacien> listSt = new ArrayList<Pharmacien>();
+     String[] headers = {"Id Pharmacien","Id Pharmacie", "Nom", "Prénom","Statut Ajout", "Telephone","E-Mail","login", "pwd","photo"}; 
+    List<Pharmacien> listSt = new ArrayList<>();
 
     public ListPharmacienModel() {
         PharmacienDAO stdao = new PharmacienDAO();
         listSt = stdao.DisplayPartiePharmacien();
     }
- @Override
-    public int getRowCount() {
-            return listSt.size();
-    }
+ //@Override
+   // public int getRowCount() {
+   //         return listSt.size();
+    //}
  @Override
     public int getColumnCount() {
         return headers.length;
@@ -35,14 +35,24 @@ public class ListPharmacienModel extends AbstractTableModel{
             case 0:
                 return listSt.get(rowIndex).getId_pharmacien();
             case 1:
-                return listSt.get(rowIndex).getNom();
+                return listSt.get(rowIndex).getId_pharmacie();
             case 2:
-                return listSt.get(rowIndex).getPrenom();
+                return listSt.get(rowIndex).getNom();
             case 3:
-                return listSt.get(rowIndex).getTel();
+                return listSt.get(rowIndex).getPrenom();
             case 4:
+                return listSt.get(rowIndex).getStatut();
+            case 5:
+                return listSt.get(rowIndex).getTel();
+            case 6:
                 return listSt.get(rowIndex).getEmail();
-            
+            case 7:
+                return listSt.get(rowIndex).getLogin();
+            case 8:
+                return listSt.get(rowIndex).getPwd();
+            case 9:
+                return listSt.get(rowIndex).getPhoto();
+           
             default:
                 return null;
         }
@@ -50,5 +60,15 @@ public class ListPharmacienModel extends AbstractTableModel{
  @Override
         public String getColumnName(int i) {
         return headers[i];
+    }
+
+   // @Override
+   // public int getRowCount() {
+        
+    //}
+
+    @Override
+    public int getRowCount() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
