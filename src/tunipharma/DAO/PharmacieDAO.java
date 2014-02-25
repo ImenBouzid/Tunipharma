@@ -51,8 +51,8 @@ public class PharmacieDAO {
     }
     
     
-    public void updatePartiePharmacie(Pharmacie st){
-        String requete = "update pharmacie set statut=1 where id_pharmacie=?";
+    public void updatePartiePharmacie(Pharmacien st){
+        String requete = "update pharmacie set statut=1 where id_pharmacie=(select * from pharmacien where id_pharmacie=id_pharmacien)";
         try {
             PreparedStatement ps = ConnectionBD.getInstance().prepareStatement(requete);
            

@@ -8,8 +8,8 @@ package tunipharma.gui;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import tunipharma.DAO.ListPharmacienModel;
 import tunipharma.DAO.PharmacienDAO;
 import tunipharma.entities.Pharmacien;
 
@@ -26,6 +26,8 @@ public class Admin_DemandeAjout extends javax.swing.JFrame {
     /**
      * Creates new form Admin_DemandeAjout
      */
+    public final ListPharmacienModel modele =new ListPharmacienModel();
+    public final ListPharmacieModel mod =new ListPharmacieModel();
     public Admin_DemandeAjout() {
         initComponents();
     }
@@ -53,7 +55,7 @@ public class Admin_DemandeAjout extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new ListPharmacienModel());
+        jTable1.setModel(modele);
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("Ajouter");
@@ -72,7 +74,7 @@ public class Admin_DemandeAjout extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Afficher");
+        jButton3.setText("Mettre à jour");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -97,7 +99,7 @@ public class Admin_DemandeAjout extends javax.swing.JFrame {
                                 .addComponent(jButton2)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton3)))
-                        .addGap(0, 141, Short.MAX_VALUE))
+                        .addGap(0, 486, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
@@ -120,10 +122,12 @@ public class Admin_DemandeAjout extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-       Pharmacien st = null;
-        PharmacienDAO stdao = new PharmacienDAO();
-        stdao.updatePartiePharmacien(st);
+        // TODO add your handling cojtde here:
+       modele.setValueAt(null, jTable1.getSelectedRow(), 0);
+       
+        //mod.setValueAtpharamacie(null, jTable1.getSelectedRow(), 0);        
+        JOptionPane.showMessageDialog(null, "Ajout du Pharamcien avec succès ");
+     
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -134,22 +138,28 @@ public class Admin_DemandeAjout extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         
-        List<Pharmacien> Di=new ArrayList() ;
-        PharmacienDAO stdao = new PharmacienDAO();
-        Di = stdao.DisplayPartiePharmacien();
+       // List<Pharmacien> Di=new ArrayList() ;
+        //PharmacienDAO stdao = new PharmacienDAO();
+       // Di = stdao.DisplayPartiePharmacien();
         
+       // modele.getValueAt(, );
+        //jTable1.repaint();
+        modele.remove_pharmacien_ligne(jTable1.getSelectedRow());
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        int SelectedRow = jTable1.getSelectedRow();
+        modele.remove_pharmacien(jTable1.getSelectedRow());
+        /*int SelectedRow = jTable1.getSelectedRow();
         final  DefaultTableModel model =  new  DefaultTableModel ();
         model.removeRow(SelectedRow);
        int num = 0 ;
         PharmacienDAO stdao = new PharmacienDAO();
-        stdao.deletePharmacien(num);
+        stdao.deletePharmacien(num);*/
     }//GEN-LAST:event_jButton2ActionPerformed
-/**
+
+    
+    /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
