@@ -15,7 +15,7 @@ import com.sun.mail.smtp.*;
 public class SendEmail {
 
     @SuppressWarnings("empty-statement")
-    public static void main(String args[]) throws Exception {
+    public static void SendEmail(String mail) throws Exception {
         Properties props = System.getProperties();
         props.put("mail.smtps.host","smtp.gmail.com");
         props.put("mail.smtps.auth","true");
@@ -23,7 +23,7 @@ public class SendEmail {
         Message msg = new MimeMessage(session);
         msg.setFrom(new InternetAddress("devils.tunipharma@gmail.com"));
         msg.setRecipients(Message.RecipientType.TO,
-        InternetAddress.parse("devils.tunipharma@gmail.com", false));
+        InternetAddress.parse(mail, false));//@destinataire
         msg.setSubject("Réclamation : "+System.currentTimeMillis());
         msg.setText("Corps du message test");
         msg.setHeader("X-Mailer", "By Sicateur");
