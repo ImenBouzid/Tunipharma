@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.event.TableModelListener;
 import tunipharma.entities.Pharmacien;
 import javax.swing.table.AbstractTableModel;
+import tunipharma.DAO.PharmacieDAO;
 import tunipharma.DAO.PharmacienDAO;
 /**
  *
@@ -35,10 +36,15 @@ public class ListPharmacienModel extends AbstractTableModel{
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         PharmacienDAO pharmacienDAO = new PharmacienDAO();
+        PharmacieDAO pharmacieDAO = new PharmacieDAO();
         Pharmacien pharmacien = listSt.get(rowIndex);
         pharmacien.setStatut(1);
+       
         pharmacienDAO.updatePartiePharmacien(pharmacien);
+         pharmacieDAO.updatePartiePharmacie(pharmacien);
+         
         fireTableRowsUpdated(rowIndex, rowIndex);
+        fireTableDataChanged();
     }
 
     @Override
@@ -48,6 +54,12 @@ public class ListPharmacienModel extends AbstractTableModel{
  public void remove_pharmacien(int rowIndex){
      PharmacienDAO pharmacienDAO = new PharmacienDAO();
      pharmacienDAO.deletePharmacien(listSt.get(rowIndex).getId_pharmacien());
+     listSt.remove(rowIndex);
+     fireTableRowsDeleted(rowIndex, rowIndex);
+ }
+ public void remove_pharmacien_ligne(int rowIndex){
+     PharmacienDAO pharmacienDAO = new PharmacienDAO();
+     
      listSt.remove(rowIndex);
      fireTableRowsDeleted(rowIndex, rowIndex);
  }

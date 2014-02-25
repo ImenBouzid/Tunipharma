@@ -2,11 +2,14 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package tunipharma.DAO;
+package tunipharma.gui;
 
 import java.util.ArrayList;
 import java.util.List;
+import tunipharma.DAO.PharmacieDAO;
+import tunipharma.DAO.PharmacienDAO;
 import tunipharma.entities.Pharmacie;
+import tunipharma.entities.Pharmacien;
 
 /**
  *
@@ -14,25 +17,28 @@ import tunipharma.entities.Pharmacie;
  */
 public class ListPharmacieModel {
     String[] headers = {"Nom de la Pharmacie"}; //adresse 
-    List<Pharmacie> listSt = new ArrayList<>();
+    List<Pharmacie> listpp = new ArrayList<>();
 
     public ListPharmacieModel() {
         PharmacieDAO phdao = new PharmacieDAO();
-        listSt = phdao.DisplayPartiePharmacie();
+        listpp = phdao.DisplayPartiePharmacie();
     }
 
     public int getRowCount() {
-            return listSt.size();
+            return listpp.size();
     }
 
     public int getColumnCount() {
         return headers.length;
     }
 
+        
+    
+    
     public Object getValueAt(int rowIndex, int ColumnIndex) {
         switch (ColumnIndex) {
             case 0:
-                return listSt.get(rowIndex).getNom();
+                return listpp.get(rowIndex).getNom();
            // case 1:
               //  return listSt.get(rowIndex).getAdresse();
             
