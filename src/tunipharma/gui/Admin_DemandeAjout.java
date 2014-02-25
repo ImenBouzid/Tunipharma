@@ -9,7 +9,6 @@ package tunipharma.gui;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
-import tunipharma.DAO.ListPharmacienModel;
 import tunipharma.DAO.PharmacienDAO;
 import tunipharma.entities.Pharmacien;
 
@@ -26,6 +25,7 @@ public class Admin_DemandeAjout extends javax.swing.JFrame {
     /**
      * Creates new form Admin_DemandeAjout
      */
+    public final ListPharmacienModel modele =new ListPharmacienModel();
     public Admin_DemandeAjout() {
         initComponents();
     }
@@ -53,7 +53,7 @@ public class Admin_DemandeAjout extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new ListPharmacienModel());
+        jTable1.setModel(modele);
         jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("Ajouter");
@@ -97,7 +97,7 @@ public class Admin_DemandeAjout extends javax.swing.JFrame {
                                 .addComponent(jButton2)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton3)))
-                        .addGap(0, 141, Short.MAX_VALUE))
+                        .addGap(0, 510, Short.MAX_VALUE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
@@ -120,10 +120,8 @@ public class Admin_DemandeAjout extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-       Pharmacien st = null;
-        PharmacienDAO stdao = new PharmacienDAO();
-        stdao.updatePartiePharmacien(st);
+        // TODO add your handling cojtde here:
+       modele.setValueAt(null, jTable1.getSelectedRow(), 0);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -142,12 +140,13 @@ public class Admin_DemandeAjout extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        int SelectedRow = jTable1.getSelectedRow();
+        modele.remove_pharmacien(jTable1.getSelectedRow());
+        /*int SelectedRow = jTable1.getSelectedRow();
         final  DefaultTableModel model =  new  DefaultTableModel ();
         model.removeRow(SelectedRow);
        int num = 0 ;
         PharmacienDAO stdao = new PharmacienDAO();
-        stdao.deletePharmacien(num);
+        stdao.deletePharmacien(num);*/
     }//GEN-LAST:event_jButton2ActionPerformed
 /**
      * @param args the command line arguments

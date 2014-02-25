@@ -37,9 +37,9 @@ public class PharmacienDAO {
 
         List<Pharmacien> listepharmacien = new ArrayList<Pharmacien>();
 
-       String requete = "select * from pharamacien where statut=0 ";
+       String requete = "select * from pharmacien where statut=0 ";
         try {
-           Statement statement;
+            Statement statement;
             statement = ConnectionBD.getInstance().createStatement();
             ResultSet resultat = statement.executeQuery(requete);
 
@@ -57,7 +57,7 @@ public class PharmacienDAO {
                 pharmacien.setLogin(resultat.getString(8));
                 pharmacien.setPwd(resultat.getString(9));
                 pharmacien.setPhoto(resultat.getString(10));
-                pharmacien.setNom(resultat.getString(11));
+               
                
 
                 listepharmacien.add(pharmacien);
@@ -77,7 +77,7 @@ public class PharmacienDAO {
         try {
             PreparedStatement ps = ConnectionBD.getInstance().prepareStatement(requete);
            
-            ps.setInt(1, st.getStatut());
+            ps.setInt(1, st.getId_pharmacien());
           
             ps.executeUpdate();
             System.out.println("Mise à jour effectuée avec succès");

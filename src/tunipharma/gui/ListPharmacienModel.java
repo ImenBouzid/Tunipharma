@@ -2,12 +2,14 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package tunipharma.DAO;
+package tunipharma.gui;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.event.TableModelListener;
 import tunipharma.entities.Pharmacien;
 import javax.swing.table.AbstractTableModel;
+import tunipharma.DAO.PharmacienDAO;
 /**
  *
  * @author Azza
@@ -29,6 +31,27 @@ public class ListPharmacienModel extends AbstractTableModel{
     public int getColumnCount() {
         return headers.length;
     }
+
+    @Override
+    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+        PharmacienDAO pharmacienDAO = new PharmacienDAO();
+        Pharmacien pharmacien = listSt.get(rowIndex);
+        pharmacien.setStatut(1);
+        pharmacienDAO.updatePartiePharmacien(pharmacien);
+        fireTableRowsUpdated(rowIndex, rowIndex);
+    }
+
+    @Override
+    public void removeTableModelListener(TableModelListener l) {
+        super.removeTableModelListener(l); //To change body of generated methods, choose Tools | Templates.
+    }
+ public void remove_pharmacien(int rowIndex){
+     PharmacienDAO pharmacienDAO = new PharmacienDAO();
+     pharmacienDAO.deletePharmacien(listSt.get(rowIndex).getId_pharmacien());
+     listSt.remove(rowIndex);
+     fireTableRowsDeleted(rowIndex, rowIndex);
+ }
+ 
  @Override
     public Object getValueAt(int rowIndex, int ColumnIndex) {
         switch (ColumnIndex) {
@@ -69,6 +92,6 @@ public class ListPharmacienModel extends AbstractTableModel{
 
     @Override
     public int getRowCount() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       return listSt.size();
     }
 }

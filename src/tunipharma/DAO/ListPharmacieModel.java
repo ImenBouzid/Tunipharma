@@ -14,7 +14,7 @@ import tunipharma.entities.Pharmacie;
  */
 public class ListPharmacieModel {
     String[] headers = {"Nom de la Pharmacie"}; //adresse 
-    List<Pharmacie> listSt = new ArrayList<Pharmacie>();
+    List<Pharmacie> listSt = new ArrayList<>();
 
     public ListPharmacieModel() {
         PharmacieDAO phdao = new PharmacieDAO();
