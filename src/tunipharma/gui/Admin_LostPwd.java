@@ -6,10 +6,7 @@
 
 package tunipharma.gui;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import tunipharma.DAO.AdminDAO;
-import tunipharma.Test.SendRecoveryEmail;
 import tunipharma.entities.Admin;
 
 /**
