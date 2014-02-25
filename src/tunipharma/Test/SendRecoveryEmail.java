@@ -12,10 +12,10 @@ import javax.mail.internet.*;
 import com.sun.mail.smtp.*;
 
 
-public class SendEmail {
+public class SendRecoveryEmail {
 
     @SuppressWarnings("empty-statement")
-    public static void SendEmail(String mail) throws Exception {
+    public static void SendRecoveryEmail(String mail, String Content) throws Exception {
         Properties props = System.getProperties();
         props.put("mail.smtps.host","smtp.gmail.com");
         props.put("mail.smtps.auth","true");
@@ -24,8 +24,15 @@ public class SendEmail {
         msg.setFrom(new InternetAddress("devils.tunipharma@gmail.com"));
         msg.setRecipients(Message.RecipientType.TO,
         InternetAddress.parse(mail, false));//@destinataire
-        msg.setSubject("Réclamation : "+System.currentTimeMillis());
-        msg.setText("Corps du message test");
+        msg.setSubject("Recovery Password "+System.currentTimeMillis());
+        msg.setText("Hey, we heard you lost your password. Say it ain't so!\n" +
+"\n" +
+"Your password:" +
+"\n" + Content +
+"\n" +
+"\n" +
+"Thanks,\n" +
+"The TuniPharma Team");
         msg.setHeader("X-Mailer", "By Sicateur");
         msg.setSentDate(new Date());
         SMTPTransport t =(SMTPTransport)session.getTransport("smtps");

@@ -8,7 +8,9 @@ package tunipharma.gui;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import tunipharma.Test.SendEmail;
+import tunipharma.DAO.AdminDAO;
+import tunipharma.Test.SendRecoveryEmail;
+import tunipharma.entities.Admin;
 
 /**
  *
@@ -38,6 +40,8 @@ public class Admin_LostPwd extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        mail_adresse.setText("sicateur@gmail.com");
 
         jLabel1.setText("@Mail :");
 
@@ -87,12 +91,14 @@ public class Admin_LostPwd extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        SendEmail se = new SendEmail();
-        try {
-            se.SendEmail(mail_adresse.getText());
-        } catch (Exception ex) {
-            Logger.getLogger(Admin_LostPwd.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        //SendRecoveryEmail sre = new SendRecoveryEmail();
+        
+         AdminDAO adminDao = new AdminDAO();
+         Admin admin = new Admin();
+         admin.setEmail(mail_adresse.getText());
+         adminDao.Admin_Recovery_Password(admin);
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

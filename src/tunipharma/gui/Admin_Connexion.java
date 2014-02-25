@@ -31,10 +31,6 @@ public class Admin_Connexion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jFrame1 = new javax.swing.JFrame();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
         TextLogin = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -42,40 +38,6 @@ public class Admin_Connexion extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jPasswordField = new javax.swing.JPasswordField();
-
-        jFrame1.setPreferredSize(new java.awt.Dimension(456, 300));
-        jFrame1.setType(java.awt.Window.Type.POPUP);
-
-        jTextField1.setText("jTextField1");
-
-        jLabel5.setText("jLabel5");
-
-        jButton2.setText("jButton2");
-
-        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
-        jFrame1.getContentPane().setLayout(jFrame1Layout);
-        jFrame1Layout.setHorizontalGroup(
-            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jFrame1Layout.createSequentialGroup()
-                .addGap(140, 140, 140)
-                .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2)
-                    .addGroup(jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel5)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(187, Short.MAX_VALUE))
-        );
-        jFrame1Layout.setVerticalGroup(
-            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jFrame1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel5)
-                .addGap(39, 39, 39)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59)
-                .addComponent(jButton2)
-                .addContainerGap(118, Short.MAX_VALUE))
-        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TuniPharma");
@@ -182,19 +144,16 @@ public class Admin_Connexion extends javax.swing.JFrame {
          admin.setLogin(TextLogin.getText());
          admin.setPwd(jPasswordField.getText());
          adminDao.Admin_Authentification(admin);
-      
+         
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         // TODO add your handling code here:
        //new Admin_LostPwd().setVisible(true);
-       new Admin_Connexion().setVisible(false);
-       jFrame1.setVisible(true);
-       AdminDAO adminDao = new AdminDAO();
-         Admin admin = new Admin();
-         admin.setLogin(TextLogin.getText());
-         admin.setPwd(jPasswordField.getText());
-         adminDao.Admin_Mail(admin);
+       //Admin_Connexion().setVisible(false);
+       
+       //jFrame1.setVisible(true);
+       
     }//GEN-LAST:event_jLabel4MouseClicked
 
     private void formComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentHidden
@@ -239,14 +198,10 @@ public class Admin_Connexion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     javax.swing.JTextField TextLogin;
     javax.swing.JButton jButton1;
-    javax.swing.JButton jButton2;
-    javax.swing.JFrame jFrame1;
     javax.swing.JLabel jLabel1;
     javax.swing.JLabel jLabel2;
     javax.swing.JLabel jLabel3;
     javax.swing.JLabel jLabel4;
-    javax.swing.JLabel jLabel5;
     javax.swing.JPasswordField jPasswordField;
-    javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
