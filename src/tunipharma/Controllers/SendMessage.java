@@ -1,5 +1,4 @@
 /**
- *
  * @author mac
  */
 // SendMessage.java - Sample application.
@@ -24,6 +23,7 @@ public class SendMessage
 {
 	public void doIt() throws Exception
 	{
+            
 		OutboundNotification outboundNotification = new OutboundNotification();
 		System.out.println("Example: Send message from a serial gsm modem.");
 		//System.out.println(Library.getLibraryDescription());
@@ -66,9 +66,14 @@ public class SendMessage
 		}
 	}
         
-        public static void main(String args[])
+        public static void main(String args[]) throws Exception
 	{
         
+      
+            SendMessage app = new SendMessage();
+		
+	app.doIt();
+		
         }
 
 	
