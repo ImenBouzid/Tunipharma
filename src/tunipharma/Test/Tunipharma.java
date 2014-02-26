@@ -6,6 +6,8 @@
 
 package tunipharma.Test;
 
+import tunipharma.gui.Admin_Connexion;
+
 /**
  *
  * @author sicateur

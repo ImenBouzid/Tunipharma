@@ -42,6 +42,7 @@ public class Admin_Connexion extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TuniPharma");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setResizable(false);
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentHidden(java.awt.event.ComponentEvent evt) {
                 formComponentHidden(evt);
@@ -63,7 +64,7 @@ public class Admin_Connexion extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 153, 0));
         jLabel1.setText("Interface de Connexion ");
 
@@ -126,7 +127,7 @@ public class Admin_Connexion extends javax.swing.JFrame {
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
@@ -143,16 +144,28 @@ public class Admin_Connexion extends javax.swing.JFrame {
          Admin admin = new Admin();
          admin.setLogin(TextLogin.getText());
          admin.setPwd(jPasswordField.getText());
-         adminDao.Admin_Authentification(admin);
+         int TypeUser = adminDao.Admin_Authentification(admin);
+         if (TypeUser==1){
+         //Affihage Menu Admin
+         new Admin_Accueil().setVisible(true);
+         //Masquer GUI Connexion
+         this.setVisible(false);}
+         else 
+             if (TypeUser==0){
+                 //Affichage Menu Pharmacien
+                 new Pharmacien_Menu().setVisible(true);
+                 //Masquer GUI Connexion
+                 this.setVisible(false);
+             }
+         
          
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         // TODO add your handling code here:
-       //new Admin_LostPwd().setVisible(true);
-       //Admin_Connexion().setVisible(false);
+       new Admin_LostPwd().setVisible(true);
+       this.setVisible(false);
        
-       //jFrame1.setVisible(true);
        
     }//GEN-LAST:event_jLabel4MouseClicked
 
@@ -204,4 +217,6 @@ public class Admin_Connexion extends javax.swing.JFrame {
     javax.swing.JLabel jLabel4;
     javax.swing.JPasswordField jPasswordField;
     // End of variables declaration//GEN-END:variables
+
+   
 }

@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import tunipharma.Test.SendRecoveryEmail;
 import tunipharma.entities.Admin;
 import tunipharma.gui.Admin_LostPwd;
+import tunipharma.gui.Admin_Accueil;
 import tunipharma.util.ConnectionBD;
 /**
  *
@@ -25,31 +26,39 @@ public class AdminDAO {
     private Component Admin_Connexion;
    
     
-    public void Admin_Authentification (Admin admin){
+    public int Admin_Authentification (Admin admin){
+        int TypeUser = -1;
       //  String requete = "select * from admin where login=? and pwd=?";
-        String requete = "select * from admin where login='"+admin.getLogin()+"' and pwd='"+admin.getPwd()+"'";
-             try {
+      //String requete = "select * from admin where login='"+admin.getLogin()+"' and pwd='"+admin.getPwd()+"'";
+        String requete =  "SELECT login, pwd, email, 1 as admin FROM admin where login = '"+admin.getLogin()+"'and pwd='"+admin.getPwd()+"'"
+                + "UNION ALL SELECT login,pwd,email, 0 FROM pharmacien where login ='"+admin.getLogin()+"'and pwd='"+admin.getPwd()+"'";  
+        try {
                PreparedStatement ps = ConnectionBD.getInstance().prepareStatement(requete);
                //ps.setString(1, admin.getLogin());
               // ps.setString(2, admin.getPwd());
                ResultSet res = ps.executeQuery(requete);
                  
                      if (res.next()){ JOptionPane.showMessageDialog(Admin_Connexion, "Authentification effectuée avec succès");
-                          System.out.println("Authentification effectuée avec succès. "+admin.getPwd());
+                          System.out.println("Authentification effectuée avec succès. "+admin.getPwd());  
+                          TypeUser = res.getInt(4);
                           }
                     else{ 
                          JOptionPane.showMessageDialog(Admin_Connexion, "Erreur lors de Authentification. Vérifier vos identifiants!");
-                          System.out.println("Erreur lors de l'authentification. "+admin.getPwd());
+                         System.out.println("Erreur lors de l'authentification. "+admin.getPwd());
+                          
                       }
                      ps.close();
              }catch (SQLException ex) {
            JOptionPane.showMessageDialog(Admin_Connexion, "Erreur lors de Connexion");
             System.out.println("Erreur lors de Connexion "+ex.getMessage());
         }
-       
+       return TypeUser;
     }
     public void Admin_Recovery_Password (Admin admin){
-        String requete = "SELECT `pwd` FROM  `admin` WHERE  `email` =  '"+admin.getEmail()+"'";
+        //String requete = "SELECT `pwd` FROM  `admin` WHERE  `email` =  '"+admin.getEmail()+"'";
+        String requete = "SELECT pwd  FROM admin where email = '"+admin.getEmail()+"'" 
+                + "UNION ALL "
+                + "SELECT pwd FROM pharmacien where email ='"+admin.getEmail()+"'";
         try {
                PreparedStatement ps = ConnectionBD.getInstance().prepareStatement(requete);
               
@@ -65,7 +74,7 @@ public class AdminDAO {
                                 System.out.println("Erreur lors de Connexion_Vérifiez votre @Mail "+res.getString(1)+" "+ex.getMessage());
                             }
                          JOptionPane.showMessageDialog(Admin_Connexion, "Vérifier votre courrier afin de récupérer votre mot de passe. ");
-                         System.out.println("Mail recovery sent to : "+res.getString(1));
+                         System.out.println("Mail recovery sent to : "+admin.getEmail()+ "with pwd : "+res.getString(1));
                           
                           }
                      //else { System.out.println("erreur requete");}
